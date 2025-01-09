@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        input#content {
+            border: 2px solid black;
+            height: 38px;
+            border-radius: 10px;
+            background: #9191d470;
+            color: #000000;
+        }
+
+        #btn {
+            background-color: aquamarine;
+        }
+
+        .strikethrougth {
+            text-decoration: line-through;
+        }
+    </style>
+    <center>
+
+        <input type="text" id="content" placeholder="type something...">
+        <button id="btn " onclick="info()">submit</button>
+    </center>
+
+    <script>
+        function info() {
+
+            let input = document.getElementById("content").value;
+
+
+
+            if (input == "") {
+                alert('This input is empty');
+                return;
+
+            }
+            let newpara = document.createElement('p')
+            newpara.innerHTML = input;
+
+            let tastspan = document.createElement('span')
+            newpara.innerHTML = input;
+            console.log(tastspan);
+
+            let done = document.createElement('button')
+            done.innerHTML = "done";
+            done.classList = "strikethrougth";
+
+            done.addEventListener("click", function () {
+                tastspan.classList.toggle("strikethrought");
+            });
+
+            let del = document.createElement('button')
+            del.innerHTML = "x";
+            del.classList = "delet-button";
+
+            del.addEventListener("click", function () {
+                newpara.remove();
+
+            });
+            newpara.appendChlid(buttom);
+            newpara.appendChlid(done);
+            newpara.appendChlid(del);
+
+            let mydiv = document.getElementById("output")
+            mydiv.appendChild(newpara); 
+
+            document.getElementById('content').value = ""
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
