@@ -9,74 +9,81 @@
 
 <body>
     <style>
-        input#content {
-            border: 2px solid black;
-            height: 38px;
-            border-radius: 10px;
-            background: #9191d470;
-            color: #000000;
-        }
-
-        #btn {
-            background-color: aquamarine;
-        }
-
-        .strikethrougth {
+      .strikethrough {
             text-decoration: line-through;
+        }
+
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            margin-left: 5px;
+        }
+
+        .strikethrough {
+            background-color: green;
+            color: white;
         }
     </style>
     <center>
 
         <input type="text" id="content" placeholder="type something...">
         <button id="btn " onclick="info()">submit</button>
+        <div id="output"></div>
     </center>
 
     <script>
-        function info() {
+       function info() {
+    // Get the input value
+    let input = document.getElementById("content").value;
 
-            let input = document.getElementById("content").value;
+    // If input is empty, show an alert
+    if (input == "") {
+        alert('This input is empty');
+        return;
+    }
 
+    // Create a new paragraph to hold the task
+    let newpara = document.createElement('p');
+    
+    // Create a span to wrap the task text (for strikethrough)
+    let tastspan = document.createElement('span');
+    tastspan.innerHTML = input;  // Set the text inside the span
+    
+    // Add the span to the paragraph
+    newpara.appendChild(tastspan);
 
+    // Create the "Done" button
+    let done = document.createElement('button');
+    done.innerHTML = "Done";
+    done.classList.add("strikethrough"); // Correct class name for strikethrough
+    
+    // Add an event listener to toggle strikethrough when clicked
+    done.addEventListener("click", function () {
+        tastspan.classList.toggle("strikethrough");
+    });
 
-            if (input == "") {
-                alert('This input is empty');
-                return;
+    // Create the "Delete" button
+    let del = document.createElement('button');
+    del.innerHTML = "x";
+    del.classList.add("delete-button"); // Correct class name for delete button
 
-            }
-            let newpara = document.createElement('p')
-            newpara.innerHTML = input;
+    // Add event listener to delete the task when clicked
+    del.addEventListener("click", function () {
+        newpara.remove(); // Remove the task paragraph
+    });
 
-            let tastspan = document.createElement('span')
-            newpara.innerHTML = input;
-            console.log(tastspan);
+    // Append the buttons to the paragraph
+    newpara.appendChild(done);
+    newpara.appendChild(del);
 
-            let done = document.createElement('button')
-            done.innerHTML = "done";
-            done.classList = "strikethrougth";
+    // Get the output div and append the new paragraph with buttons
+    let mydiv = document.getElementById("output");
+    mydiv.appendChild(newpara);
 
-            done.addEventListener("click", function () {
-                tastspan.classList.toggle("strikethrought");
-            });
-
-            let del = document.createElement('button')
-            del.innerHTML = "x";
-            del.classList = "delet-button";
-
-            del.addEventListener("click", function () {
-                newpara.remove();
-
-            });
-            newpara.appendChlid(buttom);
-            newpara.appendChlid(done);
-            newpara.appendChlid(del);
-
-            let mydiv = document.getElementById("output")
-            mydiv.appendChild(newpara); 
-
-            document.getElementById('content').value = ""
-
-
-        }
+    // Clear the input field
+    document.getElementById('content').value = "";
+}
 
 
     </script>
